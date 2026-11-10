@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ختمة قرآنية عن روح الحاج محمد سلامه عباس</title>
+<meta property="og:title" content="صدقة جارية عن روح الحاج محمد سلامه عباس">
+<meta property="og:description" content="اقرأ من الصفحة واضغط «قرأتها» بعد كل مرة، ولا تنسَ الدعاء له بالرحمة والمغفرة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+:root{--bg:#eceff0;--card:#fff;--ink:#1d2b2e;--mute:#5d6e71;--line:#cfd8da;--main:#14504a;--soft:#e6f0ee}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Amiri','Scheherazade New',serif;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.7;padding:0 0 40px}
+header{background:var(--main);color:#fff;text-align:center;padding:36px 18px 30px}
+header p{opacity:.85;font-size:17px}
+header h1{font-size:clamp(30px,8vw,52px);line-height:1.35;font-weight:700;margin:6px 0 8px}
+.dua{font-size:20px;margin-top:6px}
+main{max-width:760px;margin:0 auto;padding:0 14px}
+.tot{margin:22px 0 4px;text-align:center;color:var(--mute);font-size:18px}
+.tot b{display:block;font-size:40px;line-height:1.2;color:var(--main)}
+.how{text-align:center;color:var(--mute);font-size:17px}
+h2{font-size:26px;margin:34px 0 12px;color:var(--main)}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px 16px 14px;margin-bottom:14px}
+.card h3{font-size:22px;margin-bottom:8px}
+.tx{font-size:23px;line-height:2.1;background:var(--soft);border-radius:8px;padding:10px 14px;text-align:center}
+.q{font-size:27px;line-height:2.3}
+.ft{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.cnt{color:var(--mute);font-size:17px}
+.rd{font:inherit;font-weight:700;font-size:20px;border:none;border-radius:10px;padding:10px 26px;min-height:48px;background:var(--main);color:#fff;cursor:pointer;touch-action:manipulation}
+.rd:active{transform:scale(.96);background:#0d3b36}
+.rd:focus-visible{outline:3px solid #1b6fd6;outline-offset:2px}
+audio{width:100%;margin-top:10px;height:40px}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1d2b2e;color:#fff;padding:10px 18px;border-radius:10px;font-size:17px;max-width:92vw;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s}
+#toast.on{opacity:1}
+footer{text-align:center;color:var(--mute);font-size:16px;margin-top:36px;padding:0 14px}
+</style>
+</head>
+<body>
+<header>
+  <p>صدقة جارية عن روح المرحوم بإذن الله</p>
+  <h1>الحاج محمد سلامه عباس</h1>
+  <div class="dua">اللهم ارحمه واغفر له وأسكنه فسيح جناتك</div>
+</header>
+<main>
+  <div class="tot"><span id="tt">جاري التحميل…</span><b id="tn"></b></div>
+  <p class="how">اقرأ من الصفحة، ثم اضغط الزر في كل مرة تُتمّها، والعدد يظهر للجميع.</p>
+  <div id="root"></div>
+</main>
+<footer>تقبّل الله منكم ومنا صالح الأعمال، وجزاكم الله خيراً.</footer>
+<div id="toast" role="status"></div>
+
+<script>
+/* ====== بيانات مشروعك ====== */
+const SUPABASE_URL = "https://fkijzoplkrvnhjzotzup.supabase.co";
+const SUPABASE_KEY = "sb_publishable_CS4cT8OXn5zmXSItjIYOgA_lqPVZMQR";
+/* =========================== */
+
+/* [المفتاح، العنوان، النص] — المفتاح لازم يطابق جدول counters */
+const SECTIONS=[
+{h:"سور من القرآن الكريم",b:"قرأتها",q:1,items:[
+["fatiha","سورة الفاتحة","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿٢﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿٣﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧﴾"],
+["ikhlas","سورة الإخلاص","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ قُلْ هُوَ اللَّهُ أَحَدٌ ﴿٢﴾ اللَّهُ الصَّمَدُ ﴿٣﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٤﴾ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ ﴿٥﴾"],
+["falaq","سورة الفلق","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿٢﴾ مِن شَرِّ مَا خَلَقَ ﴿٣﴾ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٤﴾ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٥﴾ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٦﴾"],
+["nas","سورة الناس","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ قُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿٢﴾ مَلِكِ النَّاسِ ﴿٣﴾ إِلَٰهِ النَّاسِ ﴿٤﴾ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٥﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٦﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٧﴾"],
+["kafirun","سورة الكافرون","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ قُلْ يَا أَيُّهَا الْكَافِرُونَ ﴿٢﴾ لَا أَعْبُدُ مَا تَعْبُدُونَ ﴿٣﴾ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ﴿٤﴾ وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ ﴿٥﴾ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ﴿٦﴾ لَكُمْ دِينُكُمْ وَلِيَ دِينِ ﴿٧﴾"],
+["kursi","آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ"]
+]},
+{h:"أدعية وأذكار",b:"قلتها",items:[
+["dua","دعاء للميت","اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ، وَعَافِهِ وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ"],
+["thabbit","دعاء التثبيت","اللَّهُمَّ ثَبِّتْهُ عِنْدَ السُّؤَالِ، وَاجْعَلْ قَبْرَهُ رَوْضَةً مِنْ رِيَاضِ الْجَنَّةِ"],
+["tasbeeh","تسبيح","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ"],
+["istighfar","استغفار","أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ"],
+["salat","صلاة على النبي ﷺ","اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ"]
+]}
+];
+
+const $=id=>document.getElementById(id);
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const counts={},pend={},timers={};
+const num=n=>(n||0).toLocaleString("ar-EG");
+
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2500)}
+
+function build(){
+  const root=$("root");
+  SECTIONS.forEach(s=>{
+    const h=document.createElement("h2");h.textContent=s.h;root.append(h);
+    s.items.forEach(([k,t,x])=>{
+      const c=document.createElement("article");c.className="card";
+      const ti=document.createElement("h3");ti.textContent=t;
+      const p=document.createElement("p");p.className="tx"+(s.q?" q":"");p.textContent=x;
+      const src="audio/"+k+".mp3";
+      fetch(src,{method:"HEAD"}).then(r=>{if(r.ok){const a=document.createElement("audio");a.controls=true;a.preload="none";a.src=src;p.after(a)}}).catch(()=>{});
+      const f=document.createElement("div");f.className="ft";
+      const n=document.createElement("span");n.className="cnt";n.dataset.k=k;
+      const b=document.createElement("button");b.className="rd";b.textContent=s.b;b.onclick=()=>bump(k);
+      f.append(n,b);c.append(ti,p,f);root.append(c);
+    });
+  });
+}
+
+function update(){
+  let total=0;
+  document.querySelectorAll(".cnt").forEach(e=>{
+    const v=counts[e.dataset.k]||0;total+=v;
+    e.textContent="عدد المرات: "+num(v);
+  });
+  $("tt").textContent="مجموع ما أُهدي له";
+  $("tn").textContent=num(total);
+}
+
+async function load(){
+  const r=await db.from("counters").select("*");
+  if(!r.data){$("tt").textContent="تعذّر الاتصال، تأكد من إعدادات الصفحة";return}
+  r.data.forEach(x=>counts[x.type]=Number(x.count));
+  update();
+}
+
+/* تجميع الضغطات وإرسالها دفعة واحدة */
+function bump(k){
+  pend[k]=(pend[k]||0)+1;counts[k]=(counts[k]||0)+1;update();
+  clearTimeout(timers[k]);
+  timers[k]=setTimeout(async()=>{
+    let left=pend[k];pend[k]=0;
+    while(left>0){
+      const a=Math.min(left,100);left-=a;
+      const {error}=await db.rpc("increment_counter",{p_type:k,p_amount:a});
+      if(error){toast("تعذّر حفظ العدّاد");break}
+    }
+    load();
+  },900);
+}
+
+document.addEventListener("play",e=>{document.querySelectorAll("audio").forEach(a=>{if(a!==e.target)a.pause()})},true);
+build();load();
+db.channel("khetma").on("postgres_changes",{event:"*",schema:"public",table:"counters"},()=>{if(!Object.values(pend).some(v=>v))load()}).subscribe();
+setInterval(()=>{if(!Object.values(pend).some(v=>v))load()},20000);
+</script>
+</body>
+</html>
