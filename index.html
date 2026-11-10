@@ -38,6 +38,16 @@ h2{font-size:26px;margin:34px 0 12px;color:var(--main)}
 .rd:active{transform:scale(.96);background:#0d3b36}
 .rd:focus-visible{outline:3px solid #1b6fd6;outline-offset:2px}
 audio{width:100%;margin-top:10px;height:40px}
+.wel{position:fixed;inset:0;background:rgba(10,25,28,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;animation:fi .4s}
+.wel[hidden]{display:none}
+.wb{position:relative;overflow:hidden;background:var(--card);border-radius:16px;max-width:420px;width:100%;padding:26px 22px 24px;text-align:center}
+.wb h3{font-size:24px;color:var(--main);margin-bottom:10px}
+.wb p{font-size:20px;line-height:1.9;margin-bottom:10px}
+.wb .sg{color:var(--mute);margin-bottom:16px}
+.wbar{position:absolute;bottom:0;right:0;height:5px;background:var(--main);width:100%;animation:cd 12s linear forwards}
+@keyframes cd{to{width:0}}
+@keyframes fi{from{opacity:0}}
+@media(prefers-reduced-motion:reduce){.wel{animation:none}}
 #toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1d2b2e;color:#fff;padding:10px 18px;border-radius:10px;font-size:17px;max-width:92vw;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s}
 #toast.on{opacity:1}
 footer{text-align:center;color:var(--mute);font-size:16px;margin-top:36px;padding:0 14px}
@@ -57,6 +67,17 @@ footer{text-align:center;color:var(--mute);font-size:16px;margin-top:36px;paddin
   <div id="root"></div>
 </main>
 <footer>تقبّل الله منكم ومنا صالح الأعمال، وجزاكم الله خيراً.</footer>
+<div id="wel" class="wel" role="dialog" aria-modal="true" aria-labelledby="wt" hidden>
+  <div class="wb">
+    <h3 id="wt">السلام عليكم ورحمة الله وبركاته</h3>
+    <p>أهلاً بك في صفحة صدقة جارية عن روح فقيدنا الغالي، الحاج محمد سلامه عباس.</p>
+    <p>دقائق قليلة من وقتك، تقرأ فيها سورة قصيرة أو تدعو له بالرحمة، قد تكون نوراً له وأنساً في قبره.</p>
+    <p>جزاك الله خيراً، وجعل ذلك في ميزان حسناتك.</p>
+    <p class="sg">أهله ومحبوه</p>
+    <button class="rd" id="wc">ابدأ</button>
+    <i class="wbar"></i>
+  </div>
+</div>
 <div id="toast" role="status"></div>
 
 <script>
@@ -141,6 +162,17 @@ function bump(k){
   },900);
 }
 
+(function(){
+  const w=$("wel");let t;
+  try{if(sessionStorage.getItem("khetma_w"))return}catch(e){}
+  w.hidden=false;
+  const close=()=>{w.hidden=true;clearTimeout(t);try{sessionStorage.setItem("khetma_w","1")}catch(e){}};
+  t=setTimeout(close,12000);
+  $("wc").onclick=close;
+  w.onclick=e=>{if(e.target===w)close()};
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+  $("wc").focus();
+})();
 document.addEventListener("play",e=>{document.querySelectorAll("audio").forEach(a=>{if(a!==e.target)a.pause()})},true);
 build();load();
 db.channel("khetma").on("postgres_changes",{event:"*",schema:"public",table:"counters"},()=>{if(!Object.values(pend).some(v=>v))load()}).subscribe();
